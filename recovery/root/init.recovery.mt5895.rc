@@ -1,0 +1,72 @@
+on init
+
+    start recovery_mknod_util
+    #start watchdogd
+    mkdir /mnt
+    mkdir /mnt/ota
+
+on early-fs
+    write /proc/sys/kernel/printk 7
+    setprop sys.usb.configfs 1
+
+on fs
+    wait /dev/block/platform/soc/1006d000.MSDC0
+    symlink /dev/block/platform/soc/1006d000.MSDC0 /dev/block/bootdevice
+
+on post-fs
+    symlink /dev/block/bootdevice/by-name/upgrade /dev/block/bootdevice/by-name/upgrade_a
+    symlink /dev/block/bootdevice/by-name/upgrade /dev/block/bootdevice/by-name/upgrade_b
+	symlink /dev/block/bootdevice/by-name/uboot /dev/block/bootdevice/by-name/uboot_a
+    symlink /dev/block/bootdevice/by-name/uboot /dev/block/bootdevice/by-name/uboot_b
+    symlink /dev/block/bootdevice/by-name/uboot_env /dev/block/bootdevice/by-name/uboot_env_a
+    symlink /dev/block/bootdevice/by-name/uboot_env /dev/block/bootdevice/by-name/uboot_env_b
+	symlink /dev/block/bootdevice/by-name/dolby /dev/block/bootdevice/by-name/dolby_a
+	symlink /dev/block/bootdevice/by-name/dolby /dev/block/bootdevice/by-name/dolby_b
+	symlink /dev/block/bootdevice/by-name/ubootB /dev/block/bootdevice/by-name/ubootB_a
+    symlink /dev/block/bootdevice/by-name/ubootB /dev/block/bootdevice/by-name/ubootB_b
+    symlink /dev/block/bootdevice/by-name/uboot_envB /dev/block/bootdevice/by-name/uboot_envB_a
+    symlink /dev/block/bootdevice/by-name/uboot_envB /dev/block/bootdevice/by-name/uboot_envB_b
+	symlink /dev/block/bootdevice/by-name/metadata /dev/block/bootdevice/by-name/metadata_a
+    symlink /dev/block/bootdevice/by-name/metadata /dev/block/bootdevice/by-name/metadata_b
+	
+on early-init
+    # before insmod dtv_driver, must create for emmc driver.
+    mkdir /dev/block
+
+    chmod 0755 /dev/block/mmcblk0p12
+
+    restorecon /dev/mmcblk0p12
+    restorecon /dev/block/mmcblk0p12
+
+on post-fs-data
+    wait /recovery_mknod_util_done
+	insmod /dtv_dolby_vision.ko
+    insmod /mtk_core.ko
+    insmod /dtv_driver.ko osd1_src_width=960 osd1_src_height=540 osd2_src_width=1920 osd2_src_height=1080 osd_ota_stage=1
+    #insmod /mtk-hcd.ko
+    insmod /usb-storage.ko
+
+# Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
+service watchdogd /sbin/watchdogd 10 20
+    class core
+    seclabel u:r:watchdogd:s0
+
+service recovery_mknod_util /sbin/sh /recovery_mknod_util.sh
+    class main
+    oneshot
+
+on property:ro.debuggable=1
+    start console
+
+on property:sys.usb.config=fastboot
+    # umount /cache for fastboot -w works!
+    umount /cache
+
+service console /system/bin/sh
+    class core
+    console
+    disabled
+    user root
+    group shell log readproc
+    seclabel u:r:shell:s0
+    setenv HOSTNAME console
