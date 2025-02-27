@@ -1,3 +1,0 @@
-#line 1 "vendor/mediatek/proprietary_tv/open/system/sepolicy/product/private/property_contexts"
-service.droidtv.keyPressed              u:object_r:system_prop:s0
-service.droidtv.scrSaver                u:object_r:system_prop:s0
