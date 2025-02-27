@@ -187,6 +187,8 @@
 /data/vendor_de(/.*)?           u:object_r:vendor_data_file:s0
 /data/bootchart(/.*)?		u:object_r:bootchart_data_file:s0
 /cache/recovery(/.*)?	u:object_r:cache_recovery_file:s0
+/cache/overlay/(system|product)/upper       u:object_r:system_file:s0
+/cache/overlay/(vendor|odm)/upper           u:object_r:vendor_file:s0
 /dev/block/vold/.+	u:object_r:vold_device:s0
 /dev/cgroup_info(/.*)?  u:object_r:cgroup_rc_file:s0
 /system/apex/com.android.art	u:object_r:art_apex_dir:s0
@@ -268,6 +270,8 @@
 /data/system/heapdump(/.*)?     u:object_r:heapdump_data_file:s0
 /data/incremental/MT_[^/]+/mount/.pending_reads         u:object_r:incremental_control_file:s0
 /data/incremental/MT_[^/]+/mount/.log                   u:object_r:incremental_control_file:s0
+/mnt/scratch/overlay/(system|product)/upper u:object_r:system_file:s0
+/mnt/scratch/overlay/(vendor|odm)/upper     u:object_r:vendor_file:s0
 /data/app-private/vmdl.*\.tmp(/.*)?   u:object_r:apk_private_tmp_file:s0
 /data/misc/audioserver(/.*)?    u:object_r:audioserver_data_file:s0
 /system/apex/apex\.test(/.*)?                         u:object_r:system_file:s0
@@ -551,6 +555,7 @@
 /system/bin/cppreopts\.sh   u:object_r:cppreopts_exec:s0
 /system/bin/viewcompiler     u:object_r:viewcompiler_exec:s0
 /system/etc/cgroups\.json               u:object_r:cgroup_desc_file:s0
+/cache/overlay/oem/upper                    u:object_r:vendor_file:s0
 /vendor_property_contexts   u:object_r:property_contexts_file:s0
 /nonplat_service_contexts   u:object_r:nonplat_service_contexts_file:s0
 /system/bin/fsverity_init	u:object_r:fsverity_init_exec:s0
@@ -594,6 +599,7 @@
 /system/etc/task_profiles\.json  u:object_r:task_profiles_file:s0
 /system/bin/wait_for_keymaster   u:object_r:wait_for_keymaster_exec:s0
 /data/system/unsolzygotesocket  u:object_r:system_unsolzygote_socket:s0
+/mnt/scratch/overlay/oem/upper              u:object_r:vendor_file:s0
 /system/bin/flags_health_check -- u:object_r:flags_health_check_exec:s0
 /dev/socket/usap_pool_secondary	u:object_r:zygote_socket:s0
 /data/misc/bluedroid/\.a2dp_ctrl u:object_r:bluetooth_socket:s0
