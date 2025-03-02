@@ -1,0 +1,5 @@
+# only oneshot, release version didn't have this service
+service factory_service /factory/bin/factory_service
+    class main
+    oneshot
+    seclabel u:r:vold:s0
