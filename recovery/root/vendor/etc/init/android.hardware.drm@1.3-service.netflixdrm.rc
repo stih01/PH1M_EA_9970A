@@ -1,0 +1,14 @@
+service vendor.drm-netflix-hal-1-3 /vendor/bin/hw/android.hardware.drm@1.3-service.netflixdrm
+    interface android.hardware.drm@1.0::ICryptoFactory netflixdrm
+    interface android.hardware.drm@1.0::IDrmFactory netflixdrm
+    interface android.hardware.drm@1.1::ICryptoFactory netflixdrm
+    interface android.hardware.drm@1.1::IDrmFactory netflixdrm
+    interface android.hardware.drm@1.2::ICryptoFactory netflixdrm
+    interface android.hardware.drm@1.2::IDrmFactory netflixdrm
+    interface android.hardware.drm@1.3::ICryptoFactory netflixdrm
+    interface android.hardware.drm@1.3::IDrmFactory netflixdrm
+    class hal
+    user media
+    group media mediadrm drmrpc system
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks
