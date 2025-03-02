@@ -1,0 +1,225 @@
+#############  wifi 7668 dongle ###################
+
+on post-fs
+#    insmod /vendor/lib/modules/prealloc.ko
+#    insmod /vendor/lib/modules/wlan.ko
+#    insmod /vendor/lib/modules/btmtk_usb.ko
+    setprop vendor.mtk.wifi.driver "mt7668"
+
+#==================for DONGLE mt7668 =========================#
+#add for wifi fw log capture, tiangui.tang@2021.4.8 start
+service wififwlogservice /system/bin/dump_wifi_fw.sh 1
+    disabled
+    oneshot
+# start wifi fw log
+on property:odm.tpv.sys.wififwlog=1
+    exec - root -- /system/bin/dump_wifi_fw.sh 1
+
+# stop wifi fw log
+on property:odm.tpv.sys.wififwlog=0
+    exec - root -- /system/bin/dump_wifi_fw.sh 0
+
+# set wifi fw log levle as 2
+on property:odm.tpv.sys.wifiloglevel=2
+    write /proc/net/wlan/driver "set_fwlog 0 2"
+
+# set wifi fw log levle as 1
+on property:odm.tpv.sys.wifiloglevel=1
+    write /proc/net/wlan/driver "set_fwlog 0 1"
+
+# set wifi fw log levle as 0
+on property:odm.tpv.sys.wifiloglevel=0
+    write /proc/net/wlan/driver "set_fwlog 0 0"
+
+service wififwloglvlservice /vendor/bin/sh /vendor/bin/set_wifi_log_level.sh
+    disabled
+    oneshot
+    user shell
+    group wifi root
+    seclabel u:object_r:mt_wifi_fw_check:s0
+#add for wifi fw log capture, tiangui.tang@2021.4.8 end
+
+#add for wifi fw log capture, tiangui.tang@2021.5.27 start
+
+#TEMP|LOUD|INFO|TRACE | EVENT|STATE|WARN|ERROR
+#bit7|bit6|bit5|bit4 | bit3|bit2|bit1|bit0
+
+#Usage: Module Index:Module Level, such as 0x00:0xff
+
+#Debug Module    Index   Level   Debug Module    Index   Level
+
+#DBG_INIT_IDX    (0x00): 0x0f    DBG_HAL_IDX     (0x01): 0x0f
+#DBG_INTR_IDX    (0x02): 0x0f    DBG_REQ_IDX     (0x03): 0x0f
+#DBG_TX_IDX      (0x04): 0x0f    DBG_RX_IDX      (0x05): 0x0f
+#DBG_RFTEST_IDX  (0x06): 0x0f    DBG_EMU_IDX     (0x07): 0x0f
+#DBG_SW1_IDX     (0x08): 0x0f    DBG_SW2_IDX     (0x09): 0x0f
+#DBG_SW3_IDX     (0x0a): 0x0f    DBG_SW4_IDX     (0x0b): 0x0f
+#DBG_HEM_IDX     (0x0c): 0x0f    DBG_AIS_IDX     (0x0d): 0x0f
+#DBG_RLM_IDX     (0x0e): 0x0f    DBG_MEM_IDX     (0x0f): 0x0f
+#DBG_CNM_IDX     (0x10): 0x0f    DBG_RSN_IDX     (0x11): 0x0f
+#DBG_BSS_IDX     (0x12): 0x0f    DBG_SCN_IDX     (0x13): 0x0f
+#DBG_SAA_IDX     (0x14): 0x0f    DBG_AAA_IDX     (0x15): 0x0f
+#DBG_P2P_IDX     (0x16): 0x0f    DBG_QM_IDX      (0x17): 0x0f
+#DBG_SEC_IDX     (0x18): 0x0f    DBG_BOW_IDX     (0x19): 0x0f
+#DBG_WAPI_IDX    (0x1a): 0x0f    DBG_ROAMING_IDX (0x1b): 0x0f
+#DBG_TDLS_IDX    (0x1c): 0x0f    DBG_PF_IDX      (0x1d): 0x0f
+#DBG_OID_IDX     (0x1e): 0x0f    DBG_NIC_IDX     (0x1f): 0x0f
+on property:vendor.mtk.wifi.driver=mt7668 && property:odm.tpv.sys.wifidrvlevel=LOW
+    write /proc/net/wlan/dbg_level "0x0e:0x2f"
+    write /proc/net/wlan/dbg_level "0x11:0x2f"
+    write /proc/net/wlan/dbg_level "0x13:0x2f"
+    write /proc/net/wlan/dbg_level "0x14:0x2f"
+
+on property:vendor.mtk.wifi.driver=mt7668 && property:odm.tpv.sys.wifidrvlevel=MID
+    write /proc/net/wlan/dbg_level "0x0e:0x2f"
+    write /proc/net/wlan/dbg_level "0x0d:0x2f"
+    write /proc/net/wlan/dbg_level "0x11:0x2f"
+    write /proc/net/wlan/dbg_level "0x13:0x2f"
+    write /proc/net/wlan/dbg_level "0x14:0x2f"
+
+on property:vendor.mtk.wifi.driver=mt7668 && property:odm.tpv.sys.wifidrvlevel=HIGH
+    write /proc/net/wlan/dbg_level "0x0e:0x3f"
+    write /proc/net/wlan/dbg_level "0x0d:0x3f"
+    write /proc/net/wlan/dbg_level "0x11:0x3f"
+    write /proc/net/wlan/dbg_level "0x13:0x3f"
+    write /proc/net/wlan/dbg_level "0x14:0x3f"
+
+on property:vendor.mtk.wifi.driver=mt7668 && property:odm.tpv.sys.wifidrvlevel=FULL
+    write /proc/net/wlan/dbg_level "0xff:0x2f"
+    # add for print all AP bssid list
+    write /proc/net/wlan/dbg_level "0x12:0x3f"
+    write /proc/net/wlan/dbg_level "0x13:0x3f"
+
+#on property:vendor.mtk.wifi.driver=mt7668 && property:odm.tpv.sys.wifidrvlevel=SET
+#    write /proc/net/wlan/dbg_level ${odm.tpv.sys.wifidrvdbglevel}
+
+on property:vendor.mtk.wifi.driver=mt7668 && property:odm.tpv.sys.wifidrvlevel=DEFAULT
+    write /proc/net/wlan/dbg_level "0xff:0x0f"
+
+#add for wifi fw log capture, tiangui.tang@2021.5.27 end
+
+
+#==================for DONGLE mt7663 =========================#
+
+#add for wifi fw log capture, tiangui.tang@2021.5.27 start
+
+#TEMP|LOUD|INFO|TRACE | EVENT|STATE|WARN|ERROR
+#bit7|bit6|bit5|bit4 | bit3|bit2|bit1|bit0
+
+#Usage: Module Index:Module Level, such as 0x00:0xff
+
+#Debug Module    Index   Level   Debug Module    Index   Level
+
+#DBG_INIT_IDX    (0x00): 0x0f    DBG_HAL_IDX     (0x01): 0x0f
+#DBG_INTR_IDX    (0x02): 0x0f    DBG_REQ_IDX     (0x03): 0x0f
+#DBG_TX_IDX      (0x04): 0x0f    DBG_RX_IDX      (0x05): 0x0f
+#DBG_RFTEST_IDX  (0x06): 0x0f    DBG_EMU_IDX     (0x07): 0x0f
+#DBG_SW1_IDX     (0x08): 0x0f    DBG_SW2_IDX     (0x09): 0x0f
+#DBG_SW3_IDX     (0x0a): 0x0f    DBG_SW4_IDX     (0x0b): 0x0f
+#DBG_HEM_IDX     (0x0c): 0x0f    DBG_AIS_IDX     (0x0d): 0x0f
+#DBG_RLM_IDX     (0x0e): 0x0f    DBG_MEM_IDX     (0x0f): 0x0f
+#DBG_CNM_IDX     (0x10): 0x0f    DBG_RSN_IDX     (0x11): 0x0f
+#DBG_BSS_IDX     (0x12): 0x0f    DBG_SCN_IDX     (0x13): 0x0f
+#DBG_SAA_IDX     (0x14): 0x0f    DBG_AAA_IDX     (0x15): 0x0f
+#DBG_P2P_IDX     (0x16): 0x0f    DBG_QM_IDX      (0x17): 0x0f
+#DBG_SEC_IDX     (0x18): 0x0f    DBG_BOW_IDX     (0x19): 0x0f
+#DBG_WAPI_IDX    (0x1a): 0x0f    DBG_ROAMING_IDX (0x1b): 0x0f
+#DBG_TDLS_IDX    (0x1c): 0x0f    DBG_PF_IDX      (0x1d): 0x0f
+#DBG_OID_IDX     (0x1e): 0x0f    DBG_NIC_IDX     (0x1f): 0x0f
+
+on property:vendor.mtk.wifi.driver=mt7663 && property:odm.tpv.sys.wifidrvlevel=LOW
+    write /proc/net/wlan/dbgLevel "0x0e:0x2f"
+    write /proc/net/wlan/dbgLevel "0x11:0x2f"
+    write /proc/net/wlan/dbgLevel "0x13:0x2f"
+    write /proc/net/wlan/dbgLevel "0x14:0x2f"
+
+on property:vendor.mtk.wifi.driver=mt7663 && property:odm.tpv.sys.wifidrvlevel=MID
+    write /proc/net/wlan/dbgLevel "0x0e:0x2f"
+    write /proc/net/wlan/dbgLevel "0x0d:0x2f"
+    write /proc/net/wlan/dbgLevel "0x11:0x2f"
+    write /proc/net/wlan/dbgLevel "0x13:0x2f"
+    write /proc/net/wlan/dbgLevel "0x14:0x2f"
+
+on property:vendor.mtk.wifi.driver=mt7663 && property:odm.tpv.sys.wifidrvlevel=HIGH
+    write /proc/net/wlan/dbgLevel "0x0e:0x3f"
+    write /proc/net/wlan/dbgLevel "0x0d:0x3f"
+    write /proc/net/wlan/dbgLevel "0x11:0x3f"
+    write /proc/net/wlan/dbgLevel "0x13:0x3f"
+    write /proc/net/wlan/dbgLevel "0x14:0x3f"
+
+on property:vendor.mtk.wifi.driver=mt7663 && property:odm.tpv.sys.wifidrvlevel=FULL
+    write /proc/net/wlan/dbgLevel "0xff:0x2f"
+    # add for print all AP bssid list
+    write /proc/net/wlan/dbgLevel "0x12:0x3f"
+    write /proc/net/wlan/dbgLevel "0x13:0x3f"
+
+#on property:vendor.mtk.wifi.driver=mt7663 && property:odm.tpv.sys.wifidrvlevel=SET
+#    write /proc/net/wlan/dbgLevel ${odm.tpv.sys.wifidrvdbglevel}
+
+on property:vendor.mtk.wifi.driver=mt7663 && property:odm.tpv.sys.wifidrvlevel=DEFAULT
+    write /proc/net/wlan/dbgLevel "0xff:0x0f"
+
+#add for wifi fw log capture, tiangui.tang@2021.5.27 end
+
+
+#==================for DONGLE mt7961 =========================#
+
+#add for wifi fw log capture, tiangui.tang@2021.5.27 start
+
+#TEMP|LOUD|INFO|TRACE | EVENT|STATE|WARN|ERROR
+#bit7|bit6|bit5|bit4 | bit3|bit2|bit1|bit0
+
+#Usage: Module Index:Module Level, such as 0x00:0xff
+
+#Debug Module    Index   Level   Debug Module    Index   Level
+
+#DBG_INIT_IDX    (0x00): 0x0f    DBG_HAL_IDX     (0x01): 0x0f
+#DBG_INTR_IDX    (0x02): 0x0f    DBG_REQ_IDX     (0x03): 0x0f
+#DBG_TX_IDX      (0x04): 0x0f    DBG_RX_IDX      (0x05): 0x0f
+#DBG_RFTEST_IDX  (0x06): 0x0f    DBG_EMU_IDX     (0x07): 0x0f
+#DBG_SW1_IDX     (0x08): 0x0f    DBG_SW2_IDX     (0x09): 0x0f
+#DBG_SW3_IDX     (0x0a): 0x0f    DBG_SW4_IDX     (0x0b): 0x0f
+#DBG_HEM_IDX     (0x0c): 0x0f    DBG_AIS_IDX     (0x0d): 0x0f
+#DBG_RLM_IDX     (0x0e): 0x0f    DBG_MEM_IDX     (0x0f): 0x0f
+#DBG_CNM_IDX     (0x10): 0x0f    DBG_RSN_IDX     (0x11): 0x0f
+#DBG_BSS_IDX     (0x12): 0x0f    DBG_SCN_IDX     (0x13): 0x0f
+#DBG_SAA_IDX     (0x14): 0x0f    DBG_AAA_IDX     (0x15): 0x0f
+#DBG_P2P_IDX     (0x16): 0x0f    DBG_QM_IDX      (0x17): 0x0f
+#DBG_SEC_IDX     (0x18): 0x0f    DBG_BOW_IDX     (0x19): 0x0f
+#DBG_WAPI_IDX    (0x1a): 0x0f    DBG_ROAMING_IDX (0x1b): 0x0f
+#DBG_TDLS_IDX    (0x1c): 0x0f    DBG_PF_IDX      (0x1d): 0x0f
+#DBG_OID_IDX     (0x1e): 0x0f    DBG_NIC_IDX     (0x1f): 0x0f
+
+on property:vendor.mtk.wifi.driver=mt7961 && property:odm.tpv.sys.wifidrvlevel=LOW
+    write /proc/net/wlan/dbgLevel "0x0e:0x2f"
+    write /proc/net/wlan/dbgLevel "0x11:0x2f"
+    write /proc/net/wlan/dbgLevel "0x13:0x2f"
+    write /proc/net/wlan/dbgLevel "0x14:0x2f"
+
+on property:vendor.mtk.wifi.driver=mt7961 && property:odm.tpv.sys.wifidrvlevel=MID
+    write /proc/net/wlan/dbgLevel "0x0e:0x2f"
+    write /proc/net/wlan/dbgLevel "0x0d:0x2f"
+    write /proc/net/wlan/dbgLevel "0x11:0x2f"
+    write /proc/net/wlan/dbgLevel "0x13:0x2f"
+    write /proc/net/wlan/dbgLevel "0x14:0x2f"
+
+on property:vendor.mtk.wifi.driver=mt7961 && property:odm.tpv.sys.wifidrvlevel=HIGH
+    write /proc/net/wlan/dbgLevel "0x0e:0x3f"
+    write /proc/net/wlan/dbgLevel "0x0d:0x3f"
+    write /proc/net/wlan/dbgLevel "0x11:0x3f"
+    write /proc/net/wlan/dbgLevel "0x13:0x3f"
+    write /proc/net/wlan/dbgLevel "0x14:0x3f"
+
+on property:vendor.mtk.wifi.driver=mt7961 && property:odm.tpv.sys.wifidrvlevel=FULL
+    write /proc/net/wlan/dbgLevel "0xff:0x2f"
+    # add for print all AP bssid list
+    write /proc/net/wlan/dbgLevel "0x12:0x3f"
+    write /proc/net/wlan/dbgLevel "0x13:0x3f"
+
+#on property:vendor.mtk.wifi.driver=mt7961 && property:odm.tpv.sys.wifidrvlevel=SET
+#    write /proc/net/wlan/dbgLevel ${odm.tpv.sys.wifidrvdbglevel}
+
+on property:vendor.mtk.wifi.driver=mt7961 && property:odm.tpv.sys.wifidrvlevel=DEFAULT
+    write /proc/net/wlan/dbgLevel "0xff:0x0f"
+
+#add for wifi fw log capture, tiangui.tang@2021.5.27 end
