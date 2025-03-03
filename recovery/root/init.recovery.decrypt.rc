@@ -17,7 +17,6 @@ service keystore /system/bin/keystore /tmp/misc/keystore
 on property:hwservicemanager.ready=true
     start vendor.gatekeeper-1-0
     start vendor.keymaster-4-0
-    setprop vendor.sprd.storageproxyd.enabled 1
 
 on property:ro.crypto.state=unsupported
     stop vendor.keymaster-4-0
