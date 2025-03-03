@@ -65,6 +65,10 @@ on post-fs-data
     #insmod /mtk-hcd.ko
     insmod /usb-storage.ko
 
+on property:hwservicemanager.ready=true
+       start keymaster-4-0
+       start gatekeeper-1-0
+
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
     class core
