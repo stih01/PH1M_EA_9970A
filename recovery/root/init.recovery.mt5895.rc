@@ -29,25 +29,6 @@ on post-fs
 	symlink /dev/block/bootdevice/by-name/metadata /dev/block/bootdevice/by-name/metadata_a
     symlink /dev/block/bootdevice/by-name/metadata /dev/block/bootdevice/by-name/metadata_b
 	
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service.trusty
-       class hal
-       user root system
-       group root system
-       disabled
-       seclabel u:r:recovery:s0
-
-service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.trusty
-       class early_hal
-       user root nobody
-       group root drmrpc
-       disabled
-       oneshot
-       seclabel u:r:recovery:s0
-
-on property:hwservicemanager.ready=true
-       start keymaster-4-0
-       start gatekeeper-1-0
-
 on early-init
     # before insmod dtv_driver, must create for emmc driver.
     mkdir /dev/block
@@ -64,10 +45,6 @@ on post-fs-data
     insmod /dtv_driver.ko osd1_src_width=960 osd1_src_height=540 osd2_src_width=1920 osd2_src_height=1080 osd_ota_stage=1
     #insmod /mtk-hcd.ko
     insmod /usb-storage.ko
-
-on property:hwservicemanager.ready=true
-       start keymaster-4-0
-       start gatekeeper-1-0
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
