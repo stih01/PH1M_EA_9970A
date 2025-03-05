@@ -105,6 +105,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_NO_FASTBOOT_BOOT := true
+TW_NO_SCREEN_TIMEOUT := true
 #TW_MTP_DEVICE := /dev/mtp_usb
 
 # Crypto
