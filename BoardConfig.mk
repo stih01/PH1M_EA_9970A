@@ -106,6 +106,7 @@ TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_NO_FASTBOOT_BOOT := true
 TW_NO_SCREEN_TIMEOUT := true
+TW_NO_BATT_PERCENT := true
 #TW_MTP_DEVICE := /dev/mtp_usb
 
 # Crypto
