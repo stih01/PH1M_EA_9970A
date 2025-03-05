@@ -22,9 +22,9 @@ service keyMasterRun /vendor/bin/blackBox 15
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
-    start keyMasterRun
     start vendor.gatekeeper-1-0
     start vendor.keymaster-4-0
+    start keyMasterRun
 
 on property:ro.crypto.state=unsupported
     stop vendor.keymaster-4-0
