@@ -14,13 +14,6 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service keyMasterRun /vendor/bin/blackBox 15
-    user root
-    disabled
-    group system mediadrm
-    oneshot
-    seclabel u:r:recovery:s0
-
 on property:hwservicemanager.ready=true
     start vendor.gatekeeper-1-0
     start vendor.keymaster-4-0
