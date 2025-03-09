@@ -11,7 +11,8 @@
 #/dev/block/bootdevice/by-name/vendor        /vendor         ext4        ro                                                      wait,slotselect
 system                                      /system         ext4  ro,noauto_da_alloc             wait,avb=vbmeta_system,slotselect,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
 vendor                                      /vendor         ext4                ro,noauto_da_alloc             wait,avb=vbmeta_vendor,slotselect,logical,first_stage_mount
-/dev/block/bootdevice/by-name/userdata      /data           ext4        noatime,nosuid,nodev,nomblk_io_submit,errors=panic      wait
+#/dev/block/bootdevice/by-name/userdata      /data           ext4        noatime,nosuid,nodev,nomblk_io_submit,errors=panic      wait
+/dev/block/bootdevice/by-name/userdata      /data           ext4                nosuid,nodev,noauto_da_alloc,noatime    wait,check,quota,latemount,reservedsize=128M,fileencryption=aes-256-xts,checkpoint=block
 #/dev/block/bootdevice/by-name/cache         /cache          ext4        noatime,nosuid,nodev,nomblk_io_submit,errors=panic      wait
 /dev/block/bootdevice/by-name/linux_rootfs  /mnt/vendor/linux_rootfs   emmc        defaults                                                defaults,slotselect
 /dev/block/bootdevice/by-name/3rd           /mnt/vendor/3rd            emmc        defaults                                                defaults,slotselect
