@@ -6,6 +6,7 @@ on init
     #start watchdogd
     mkdir /mnt
     mkdir /mnt/ota
+    setprop crypto.ready 1
 
 on early-fs
     write /proc/sys/kernel/printk 7
@@ -59,6 +60,10 @@ service recovery_mknod_util /sbin/sh /recovery_mknod_util.sh
 
 on property:ro.debuggable=1
     start console
+
+on property:crypto.ready=1
+    start vendor.gatekeeper-1-0
+    start vendor.keymaster-4-0
 
 on property:sys.usb.config=fastboot
     # umount /cache for fastboot -w works!
