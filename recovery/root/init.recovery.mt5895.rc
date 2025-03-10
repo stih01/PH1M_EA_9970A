@@ -33,6 +33,7 @@ on post-fs
     symlink /dev/block/bootdevice/by-name/uboot_envB /dev/block/bootdevice/by-name/uboot_envB_b
 	symlink /dev/block/bootdevice/by-name/metadata /dev/block/bootdevice/by-name/metadata_a
     symlink /dev/block/bootdevice/by-name/metadata /dev/block/bootdevice/by-name/metadata_b
+    start vendor.boot-hal-1-0
 	
 on early-init
     # before insmod dtv_driver, must create for emmc driver.
