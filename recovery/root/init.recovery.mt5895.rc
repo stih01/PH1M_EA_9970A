@@ -15,6 +15,8 @@ on early-fs
 on fs
     wait /dev/block/platform/soc/1006d000.MSDC0
     symlink /dev/block/platform/soc/1006d000.MSDC0 /dev/block/bootdevice
+    mkdir /oem
+    mount ext4 /dev/block/platform/soc/1006d000.MSDC0/by-name/oem /oem
 
 on post-fs
     symlink /dev/block/bootdevice/by-name/upgrade /dev/block/bootdevice/by-name/upgrade_a
