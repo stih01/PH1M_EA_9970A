@@ -11,12 +11,14 @@ on init
 on early-fs
     write /proc/sys/kernel/printk 7
     setprop sys.usb.configfs 1
+    start vold
 
 on fs
     wait /dev/block/platform/soc/1006d000.MSDC0
     symlink /dev/block/platform/soc/1006d000.MSDC0 /dev/block/bootdevice
     mkdir /oem
     mount ext4 /dev/block/platform/soc/1006d000.MSDC0/by-name/oem /oem
+    mount_all /first_stage_ramdisk/fstab.mt5895 --late
 
 on post-fs
     symlink /dev/block/bootdevice/by-name/upgrade /dev/block/bootdevice/by-name/upgrade_a
