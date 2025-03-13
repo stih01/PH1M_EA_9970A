@@ -138,15 +138,6 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_USE_FSCRYPT_POLICY := 1
 TW_PREPARE_DATA_MEDIA_EARLY := true
 
-# Дополнительные двоичные файлы и библиотеки, необходимые для восстановления
-#TARGET_RECOVERY_DEVICE_MODULES += \
-          ashmemd_aidl_interface-cpp \
-          libashmemd_client
-
-#TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-$(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
-$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so
-
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
