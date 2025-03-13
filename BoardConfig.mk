@@ -155,7 +155,7 @@ TARGET_USES_LOGD := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_SDCARD_ON_DATA := true
 #TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.0/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.0/file
 
 # Исключает (Excludes)
 TW_EXCLUDE_TWRPAPP := true
