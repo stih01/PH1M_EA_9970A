@@ -19,15 +19,22 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-impl.recovery \
     android.hardware.boot@1.0-service \
     bootctrl
 
 PRODUCT_PACKAGES += \
-    bootctrl.$(TARGET_BOARD_PLATFORM) \
-    bootctrl.$(TARGET_BOARD_PLATFORM).recovery \
+    bootctrl.mt5895 \
+    bootctrl.mt5895.recovery \
     libgptutils \
     libz \
     libcutils
+
+# Fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd \
+    android.hardware.fastboot@1.0-impl \
+    android.hardware.fastboot@1.0-impl.recovery
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
