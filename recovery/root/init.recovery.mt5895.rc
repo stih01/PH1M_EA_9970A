@@ -6,19 +6,14 @@ on init
     #start watchdogd
     mkdir /mnt
     mkdir /mnt/ota
-#    setprop crypto.ready 1
 
 on early-fs
     write /proc/sys/kernel/printk 7
     setprop sys.usb.configfs 1
-#    start vold
 
 on fs
     wait /dev/block/platform/soc/1006d000.MSDC0
     symlink /dev/block/platform/soc/1006d000.MSDC0 /dev/block/bootdevice
-#    mkdir /oem
-    mount ext4 /dev/block/platform/soc/1006d000.MSDC0/by-name/oem /oem
-#    mount_all /first_stage_ramdisk/fstab.mt5895 --late
 
 on post-fs
     symlink /dev/block/bootdevice/by-name/upgrade /dev/block/bootdevice/by-name/upgrade_a
@@ -64,10 +59,6 @@ service recovery_mknod_util /sbin/sh /recovery_mknod_util.sh
 
 on property:ro.debuggable=1
     start console
-
-#on property:crypto.ready=1
-#    start vendor.gatekeeper-1-0
-#    start vendor.keymaster-4-0
 
 on property:sys.usb.config=fastboot
     # umount /cache for fastboot -w works!
