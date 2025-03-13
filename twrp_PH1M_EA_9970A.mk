@@ -11,6 +11,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common Twrp stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# Устанавливает ключи gsi в ramdisk, чтобы загрузить GSI разработчика с проверенной загрузкой.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
+# Наследовать от этих продуктов. Сначала самое конкретное.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
+
 # Inherit from PH1M_EA_9970A device
 $(call inherit-product, device/Philips/PH1M_EA_9970A/device.mk)
 
@@ -18,7 +24,7 @@ PRODUCT_DEVICE := PH1M_EA_9970A
 PRODUCT_NAME := PH1M_EA_9970A
 PRODUCT_BRAND := Philips
 PRODUCT_MODEL := 2021/22 Philips UHD Android TV
-PRODUCT_MANUFACTURER := tpv
+PRODUCT_MANUFACTURER := TPV
 
 PRODUCT_GMS_CLIENTID_BASE := android-tpv
 
