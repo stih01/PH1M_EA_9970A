@@ -44,7 +44,5 @@ PRODUCT_PACKAGES += \
 # Additional binaries & libraries needed for recovery
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/librecovery_ui_ext.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/librecovery_ui.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libtrusty.so
