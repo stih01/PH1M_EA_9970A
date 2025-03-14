@@ -1,4 +1,4 @@
-/sdcard                      vfat     /dev/block/sda1                                flags=display=sdcard
+#/sdcard                      vfat     /dev/block/sda1                                flags=display=sdcard
 /uboot                       emmc     /dev/block/bootdevice/by-name/uboot            flags=display=uboot;backup=1;flashimg=1
 /uboot_env                   emmc     /dev/block/bootdevice/by-name/uboot_env        flags=display=uboot_env;backup=1;flashimg=1
 /misc                        emmc     /dev/block/bootdevice/by-name/misc             flags=display=misc;backup=1;flashimg=1
