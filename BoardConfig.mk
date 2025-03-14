@@ -129,7 +129,13 @@ TW_NO_FASTBOOT_BOOT := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_NO_BATT_PERCENT := true
 TW_DEFAULT_LANGUAGE := ru
-TARGET_USES_MKE2FS := true
+
+# Хранилище (Storage)
+#TW_NO_USB_STORAGE := false
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_HAS_MTP := true
 
 # Crypto
