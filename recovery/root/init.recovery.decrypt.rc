@@ -1,6 +1,5 @@
 import /vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
 import /vendor/etc/init/android.hardware.keymaster@4.0-service.trusty.rc
-import /vendor/etc/init/hw/init.mt5895.usb.rc
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
