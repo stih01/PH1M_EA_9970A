@@ -28,7 +28,7 @@ PRODUCT_PACKAGES += \
 #    libcutils
 
 # Fastbootd
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     fastbootd \
     android.hardware.fastboot@1.0-impl \
     android.hardware.fastboot@1.0-impl.recovery
