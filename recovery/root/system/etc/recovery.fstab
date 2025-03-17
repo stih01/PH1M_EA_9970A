@@ -1,0 +1,30 @@
+# Android fstab file.
+#<src>                                      <mnt_point>     <type>      <mnt_flags and options>                                 <fs_mgr_flags>
+
+/dev/block/sda1                             /sdcard         vfat        defaults                                                defaults
+/dev/block/bootdevice/by-name/uboot         /uboot          emmc        defaults                                                defaults
+/dev/block/bootdevice/by-name/uboot_env     /uboot_env      emmc        defaults                                                defaults
+/dev/block/bootdevice/by-name/misc          /misc           emmc        defaults                                                defaults
+#/dev/block/bootdevice/by-name/recovery      /recovery       emmc        defaults                                                defaults
+/dev/block/bootdevice/by-name/boot          /boot           emmc        defaults                                                defaults,slotselect
+#/dev/block/bootdevice/by-name/system        /               ext4        ro                                                      wait,slotselect
+#/dev/block/bootdevice/by-name/vendor        /vendor         ext4        ro                                                      wait,slotselect
+system                                      /system         ext4  ro,noauto_da_alloc             wait,avb=vbmeta_system,slotselect,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+vendor                                      /vendor         ext4                ro,noauto_da_alloc             wait,avb=vbmeta_vendor,slotselect,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata      /data           ext4        noatime,nosuid,nodev,nomblk_io_submit,errors=panic      wait
+#/dev/block/bootdevice/by-name/cache         /cache          ext4        noatime,nosuid,nodev,nomblk_io_submit,errors=panic      wait
+/dev/block/bootdevice/by-name/linux_rootfs  /mnt/vendor/linux_rootfs   emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/3rd           /mnt/vendor/3rd            emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/3rd_rw        /data/vendor/3rd_rw    ext4        rw                                                      wait
+/dev/block/bootdevice/by-name/pq            /pq             emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/aq            /aq             emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/aud_dat       /aud_dat        emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/tzbp          /tzbp           emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/adsp          /adsp           emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/vbmeta        /vbmeta         emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/dtbo          /dtbo           emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/r20           /r20            emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/r21           /r21            emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/3dlut         /3dlut          emmc        defaults                                                defaults,slotselect
+/dev/block/bootdevice/by-name/cm4           /cm4            emmc        defaults                                                defaults,slotselect
+
