@@ -1,0 +1,34 @@
+#/usb-otg                     auto     /dev/block/sda1                                flags=display=USB-OTG;slotselect;backup=1;flashimg=1
+/uboot                       emmc     /dev/block/bootdevice/by-name/uboot            flags=display=uboot;backup=1;flashimg=1
+/uboot_env                   emmc     /dev/block/bootdevice/by-name/uboot_env        flags=display=uboot_env;backup=1;flashimg=1
+/misc                        emmc     /dev/block/bootdevice/by-name/misc             flags=display=misc;backup=1;flashimg=1
+/boot                        emmc     /dev/block/bootdevice/by-name/boot             flags=display=boot;slotselect;backup=1;flashimg=1
+/system                      ext4     system                                         flags=display=system;logical;slotselect;backup=1;flashimg=1
+/vendor                      ext4     vendor                                         flags=display=vendor;logical;slotselect;backup=1;flashimg=1
+/data                        ext4     /dev/block/bootdevice/by-name/userdata         flags=display=data;logical;slotselect;backup=1;flashimg=1
+/mnt/vendor/linux_rootfs     emmc     /dev/block/bootdevice/by-name/linux_rootfs     flags=display=linux_rootfs;slotselect;backup=1;flashimg=1
+/mnt/vendor/3rd              emmc     /dev/block/bootdevice/by-name/3rd              flags=display=3rd;slotselect;backup=1;flashimg=1
+/data/vendor/3rd_rw          ext4     /dev/block/bootdevice/by-name/3rd_rw           flags=display=3rd_rw;backup=1;flashimg=1
+/pq                          emmc     /dev/block/bootdevice/by-name/pq               flags=display=pq;slotselect;backup=1;flashimg=1
+/aq                          emmc     /dev/block/bootdevice/by-name/aq               flags=display=aq;slotselect;backup=1;flashimg=1
+/aud_dat                     emmc     /dev/block/bootdevice/by-name/aud_dat          flags=display=aud_dat;slotselect;backup=1;flashimg=1
+/tzbp                        emmc     /dev/block/bootdevice/by-name/tzbp             flags=display=tzbp;slotselect;backup=1;flashimg=1
+/adsp                        emmc     /dev/block/bootdevice/by-name/adsp             flags=display=adsp;slotselect;backup=1;flashimg=1
+/vbmeta                      emmc     /dev/block/bootdevice/by-name/vbmeta           flags=display=vbmeta;slotselect;backup=1;flashimg=1
+/dtbo                        emmc     /dev/block/bootdevice/by-name/dtbo             flags=display=dtbo;slotselect;backup=1;flashimg=1
+/r20                         emmc     /dev/block/bootdevice/by-name/r20              flags=display=r20;slotselect;backup=1;flashimg=1
+/r21                         emmc     /dev/block/bootdevice/by-name/r21              flags=display=r21;slotselect;backup=1;flashimg=1
+/3dlut                       emmc     /dev/block/bootdevice/by-name/3dlut            flags=display=3dlut;slotselect;backup=1;flashimg=1
+/cm4                         emmc     /dev/block/bootdevice/by-name/cm4              flags=display=cm4;slotselect;backup=1;flashimg=1
+#SD cards
+#/external_sd	auto		/dev/block/mmcblk0p1	/dev/block/mmcblk0	flags=display="MicroSD Card 1";storage;wipeingui;removable
+#/external_sd    vfat        /dev/block/mmcblk1p1	/dev/block/mmcblk1 	flags=display="MicroSD Card 2";storage;wipeingui;removable
+#/external_sd	auto		/dev/block/mmcblk0p1	/dev/block/mmcblk0	flags=display="MicroSD Card 3";storage;wipeingui;removable
+#/external_sd    auto        /dev/block/mmcblk1p1	/dev/block/mmcblk1 	flags=display="MicroSD Card 4";storage;wipeingui;removable
+
+#OTG
+/usb-otg	 auto        /dev/block/sda1 /dev/block/sda        flags=display="USB-OTG 1";storage;wipeingui;removable;fsflags="utf8"
+#/usb-otg    auto        /dev/block/sdb1 /dev/block/sdb        flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"
+#/usb-otg    auto        /dev/block/sda1 /dev/block/sda        flags=display="USB OTG 2";backup=0
+#/usb-otg    auto        /dev/block/sdg1 /dev/block/sdg        flags=display="USB-OTG 3";backup=0
+#/usb_otg    auto        /dev/block/sdd1 /dev/block/sdd        flags=display="USB-OTG 5";backup=0
