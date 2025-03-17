@@ -23,12 +23,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     bootctrl.mt5895
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.mt5895 \
-    libgptutils \
-    libz \
-    libcutils
+#    libgptutils \
+#    libz \
+#    libcutils
 
 # Fastbootd
 PRODUCT_PACKAGES += \
