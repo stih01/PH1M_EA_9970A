@@ -136,6 +136,7 @@ TW_MTP_DEVICE := "PH1M_EA_9970A"
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 LZMA_RAMDISK_TARGETS := boot
 TW_EXCLUDE_NANO := true
+TW_NO_HAPTICS := true
 
 # Хранилище (Storage)
 TW_MTP_DEVICE := /dev/mtp_usb
