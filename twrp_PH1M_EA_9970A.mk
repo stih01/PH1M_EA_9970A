@@ -11,7 +11,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit some common Twrp stuff.
-$(call inherit-product, vendor/twrp/config/common.mk)
+#$(call inherit-product, vendor/twrp/config/common.mk)
 
 # Устанавливает ключи gsi в ramdisk, чтобы загрузить GSI разработчика с проверенной загрузкой.
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
