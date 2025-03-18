@@ -5,9 +5,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-#cd ./vendor/twrp/config/
-#sed -i '/^ifeq/,$d' BoardConfigTWRP.mk
-#cd ~-
+cd ./vendor/twrp/config/
+sed -i '/^ifeq/,$d' BoardConfigTWRP.mk
+cd ~-
 
 add_lunch_combo twrp_PH1M_EA_9970A-user
 add_lunch_combo twrp_PH1M_EA_9970A-userdebug
