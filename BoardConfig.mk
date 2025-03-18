@@ -133,6 +133,7 @@ BOARD_HAS_NO_REAL_SDCARD := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_MTP_DEVICE := "PH1M_EA_9970A"
 TW_NO_HAPTICS := true
+TW_EXCLUDE_TZDATA := true
 
 # Хранилище (Storage)
 TW_MTP_DEVICE := /dev/mtp_usb
