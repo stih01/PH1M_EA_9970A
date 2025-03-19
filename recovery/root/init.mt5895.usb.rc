@@ -1,9 +1,3 @@
-# Copyright (C) 2012 The Android Open Source Project
-#
-# USB configuration common for all android devices
-#
-
-
 on boot
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
