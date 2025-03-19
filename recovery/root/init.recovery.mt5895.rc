@@ -1,5 +1,6 @@
 import /init.recovery.decrypt.rc
 import /init.mt5895.usb.rc
+import /system/etc/init/mtpd.rc
 on init
 
     start recovery_mknod_util
