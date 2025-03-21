@@ -1,4 +1,3 @@
-#/usb-otg                     auto     /dev/block/sda1                                flags=display=USB-OTG;slotselect;backup=1;flashimg=1
 /uboot                       emmc     /dev/block/bootdevice/by-name/uboot            flags=display=uboot;backup=1;flashimg=1
 /uboot_env                   emmc     /dev/block/bootdevice/by-name/uboot_env        flags=display=uboot_env;backup=1;flashimg=1
 /misc                        emmc     /dev/block/bootdevice/by-name/misc             flags=display=misc;backup=1;flashimg=1
@@ -20,15 +19,7 @@
 /r21                         emmc     /dev/block/bootdevice/by-name/r21              flags=display=r21;slotselect;backup=1;flashimg=1
 /3dlut                       emmc     /dev/block/bootdevice/by-name/3dlut            flags=display=3dlut;slotselect;backup=1;flashimg=1
 /cm4                         emmc     /dev/block/bootdevice/by-name/cm4              flags=display=cm4;slotselect;backup=1;flashimg=1
-#SD cards
-#/external_sd	auto		/dev/block/mmcblk0p1	/dev/block/mmcblk0	flags=display="MicroSD Card 1";storage;wipeingui;removable
-#/external_sd    vfat        /dev/block/mmcblk1p1	/dev/block/mmcblk1 	flags=display="MicroSD Card 2";storage;wipeingui;removable
-#/external_sd	auto		/dev/block/mmcblk0p1	/dev/block/mmcblk0	flags=display="MicroSD Card 3";storage;wipeingui;removable
-#/external_sd    auto        /dev/block/mmcblk1p1	/dev/block/mmcblk1 	flags=display="MicroSD Card 4";storage;wipeingui;removable
 
 #OTG
 /usb-otg	 auto        /dev/block/sda1 /dev/block/sda        flags=display="USB-OTG 1";storage;wipeingui;removable;fsflags="utf8"
 #/usb-otg    auto        /dev/block/sdb1 /dev/block/sdb        flags=display="Usb_Otg";storage;wipeingui;removable;fsflags="utf8"
-#/usb-otg    auto        /dev/block/sda1 /dev/block/sda        flags=display="USB OTG 2";backup=0
-#/usb-otg    auto        /dev/block/sdg1 /dev/block/sdg        flags=display="USB-OTG 3";backup=0
-#/usb_otg    auto        /dev/block/sdd1 /dev/block/sdd        flags=display="USB-OTG 5";backup=0
