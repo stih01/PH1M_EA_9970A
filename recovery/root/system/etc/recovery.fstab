@@ -7,7 +7,7 @@
 /dev/block/bootdevice/by-name/misc          /misc           emmc        defaults                                                defaults
 #/dev/block/bootdevice/by-name/recovery      /recovery       emmc        defaults                                                defaults
 /dev/block/bootdevice/by-name/boot          /boot           emmc        defaults                                                defaults,slotselect
-#/dev/block/bootdevice/by-name/system        /               ext4        ro                                                      wait,slotselect
+#/dev/block/bootdevice/by-name/system        /               ext4        rw                                                      wait,slotselect
 #/dev/block/bootdevice/by-name/vendor        /vendor         ext4        ro                                                      wait,slotselect
 system                                      /system         ext4  ro,noauto_da_alloc             wait,avb=vbmeta_system,slotselect,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
 vendor                                      /vendor         ext4                ro,noauto_da_alloc             wait,avb=vbmeta_vendor,slotselect,logical,first_stage_mount
