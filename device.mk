@@ -25,12 +25,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bootctrl.mt5895
 
-# Fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd \
-    android.hardware.fastboot@1.0-impl \
-    android.hardware.fastboot@1.0-impl.recovery
-
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
