@@ -24,9 +24,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     bootctrl.mt5895
-#    libgptutils \
-#    libz \
-#    libcutils
 
 # Fastbootd
 PRODUCT_PACKAGES += \
