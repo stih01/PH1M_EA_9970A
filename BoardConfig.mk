@@ -135,8 +135,8 @@ TW_NO_HAPTICS := true
 TW_EXCLUDE_TZDATA := true
 
 # Хранилище (Storage)
-TW_MTP_DEVICE := /dev/mtp_usb
-TW_HAS_MTP := true
+#TW_MTP_DEVICE := /dev/mtp_usb
+#TW_HAS_MTP := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
