@@ -123,20 +123,17 @@ TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
-TW_INCLUDE_REPACKTOOLS := true
 TW_NO_FASTBOOT_BOOT := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_NO_BATT_PERCENT := true
 TW_NO_CPU_TEMP := true
 TW_DEFAULT_LANGUAGE := ru
 BOARD_HAS_NO_REAL_SDCARD := true
-#TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_NO_HAPTICS := true
 TW_EXCLUDE_TZDATA := true
 
-# Хранилище (Storage)
-TW_MTP_DEVICE := /dev/usb-ffs
-TW_HAS_MTP := true
+# Удалить поддержку MTP
+TW_EXCLUDE_MTP := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
@@ -145,9 +142,6 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_USE_FSCRYPT_POLICY := 1
 TW_PREPARE_DATA_MEDIA_EARLY := true
 
-# Fastbootd
-TW_INCLUDE_FASTBOOTD := true
-
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
@@ -155,7 +149,6 @@ TARGET_USES_LOGD := true
 # Properties
 BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_SDCARD_ON_DATA := true
-#TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.%d/file
 
 # Исключает (Excludes)
