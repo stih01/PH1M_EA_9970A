@@ -5,7 +5,7 @@
 /system                      ext4     system                                         flags=display=system;logical;slotselect;backup=1;flashimg=1
 /vendor                      ext4     vendor                                         flags=display=vendor;logical;slotselect;backup=1;flashimg=1
 /data                        ext4     /dev/block/bootdevice/by-name/userdata         flags=display=data;logical;slotselect;backup=1;flashimg=1
-/mnt/vendor/linux_rootfs     emmc     /dev/block/bootdevice/by-name/linux_rootfs     flags=display=linux_rootfs;storagename=linux_rootfs;slotselect;backup=1;flashimg=1
+/mnt/vendor/linux_rootfs     emmc     /dev/block/bootdevice/by-name/linux_rootfs     flags=display=linux_rootfs;slotselect;backup=1;flashimg=1
 /mnt/vendor/3rd              emmc     /dev/block/bootdevice/by-name/3rd              flags=display=3rd;slotselect;backup=1;flashimg=1
 /data/vendor/3rd_rw          ext4     /dev/block/bootdevice/by-name/3rd_rw           flags=display=3rd_rw;backup=1;flashimg=1
 /pq                          emmc     /dev/block/bootdevice/by-name/pq               flags=display=pq;slotselect;backup=1;flashimg=1
@@ -21,5 +21,5 @@
 /cm4                         emmc     /dev/block/bootdevice/by-name/cm4              flags=display=cm4;slotselect;backup=1;flashimg=1
 
 #OTG
-/usb-otg    auto        /dev/block/sda1 /dev/block/sda        flags=display="USB-OTG 1";storage;wipeingui;removable;backup=1;fsflags="utf8"
-/usb-otg    auto        /dev/block/sdb1 /dev/block/sdb        flags=display="USB-OTG 2";storage;wipeingui;removable;fsflags="utf8"
+/sdcard    auto        /dev/block/sda1 /dev/block/sda        flags=display="USB-OTG 1";storage;wipeingui;removable;fsflags="utf8"
+/storage/self/primary    auto        /dev/block/sdb1 /dev/block/sdb        flags=display="USB-OTG 2";storage;wipeingui;removable;fsflags="utf8"
