@@ -128,7 +128,6 @@ TW_NO_SCREEN_TIMEOUT := true
 TW_NO_BATT_PERCENT := true
 TW_NO_CPU_TEMP := true
 TW_DEFAULT_LANGUAGE := ru
-BOARD_HAS_NO_REAL_SDCARD := true
 TW_NO_HAPTICS := true
 TW_EXCLUDE_TZDATA := true
 
@@ -147,6 +146,7 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # Properties
+BOARD_HAS_NO_REAL_SDCARD := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.%d/file
