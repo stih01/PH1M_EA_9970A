@@ -1,4 +1,5 @@
-import /init.recovery.decrypt.rc
+import /vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
+import /vendor/etc/init/android.hardware.keymaster@4.0-service.trusty.rc
 import /init.mt5895.usb.rc
 
 on init
@@ -15,6 +16,32 @@ on early-fs
 on fs
     wait /dev/block/platform/soc/1006d000.MSDC0
     symlink /dev/block/platform/soc/1006d000.MSDC0 /dev/block/bootdevice
+
+service keystore_auth /system/bin/keystore_auth
+    oneshot
+    user system
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+service keystore /system/bin/keystore /tmp/misc/keystore
+    user root
+    group root drmrpc readproc log
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    install_keyring
+
+on property:hwservicemanager.ready=true
+    start vendor.gatekeeper-1-0
+    start vendor.keymaster-4-0
+
+#on property:twrp.decrypt.done=true
+#    stop vendor.keymaster-4-0
+#    stop vendor.gatekeeper-1-0
+#    stop servicemanager
+#    stop hwservicemanager
 
 on post-fs
     symlink /dev/block/bootdevice/by-name/upgrade /dev/block/bootdevice/by-name/upgrade_a
