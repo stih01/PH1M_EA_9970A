@@ -21,5 +21,5 @@
 /cm4                         emmc     /dev/block/bootdevice/by-name/cm4              flags=display=cm4;slotselect;backup=1;flashimg=1
 
 #OTG
-/sdcard    auto        /dev/block/sda1 /dev/block/sda        flags=display="USB-OTG 1";storage;wipeingui;removable;fsflags="utf8"
-/storage/self/primary    auto        /dev/block/sdb1 /dev/block/sdb        flags=display="USB-OTG 2";storage;wipeingui;removable;fsflags="utf8"
+/usb-otg     auto        /dev/block/sda1 /dev/block/sda        flags=display="USB-OTG";storage;wipeingui;removable
+/usb-otg1    auto        /dev/block/sdb1 /dev/block/sdb        flags=display="USB-OTG 1";storage;wipeingui;removable
